@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFFFF"
+    tools:context=".ui.MainFragment">
+
+    <View
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnDeleteAll"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#00FFFFFF"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/action_bar"
+        app:layout_constraintEnd_toEndOf="@+id/action_bar"
+        app:layout_constraintTop_toTopOf="@+id/action_bar"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <TextView
+        android:id="@+id/action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Notes"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/action_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar" />
+
+    <LinearLayout
+        android:id="@+id/tag_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:gravity="start|center"
+        app:layout_constraintBottom_toTopOf="@+id/notes_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar"
+        >
+
+
+        <TextView
+            android:id="@+id/tag_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="6dp"
+            android:layout_marginHorizontal="16dp"
+            android:gravity="center"
+            android:text="Priority: "
+            android:textSize="12sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/priority_high"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:cardCornerRadius="10dp"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="#FFB7B7"
+            app:strokeColor="#FFB7B7"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginHorizontal="4dp"
+            >
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:gravity="center"
+                android:text="High"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/priority_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:cardBackgroundColor="#FFB7B7"
+            app:cardCornerRadius="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#FFB7B7"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginHorizontal="4dp"
+            >
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:gravity="center"
+                android:text="Medium"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/priority_simple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:clickable="true"
+            app:cardBackgroundColor="#FFB7B7"
+            app:cardCornerRadius="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#FFB7B7"
+            android:gravity="center"
+            android:layout_marginHorizontal="4dp"
+            >
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:gravity="center"
+
+                android:text="Default"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notes_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="6dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_l"
+        app:spanCount="2"
+        tools:listitem="@layout/item_note" />
+
+    <TextView
+        android:id="@+id/place_holder"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No notes have been added yet"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_l" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_openAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginVertical="30dp"
+        android:layout_marginHorizontal="16dp"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#FF865E"
+        app:tint="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
